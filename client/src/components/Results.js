@@ -4,11 +4,16 @@ const axios = require("axios");
 
 class Results extends React.Component {
     state = {
-        articles: []
+        articles: [],
+        query: ""
     };
 
     componentDidMount() {
         console.log("done");
+
+        this.setState({
+           query: this.props.query
+        });
 
         axios({
             method: "GET",

@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "../Card"
 const axios = require("axios");
 
 class Saved extends React.Component {
@@ -7,17 +8,35 @@ class Saved extends React.Component {
     };
 
     componentDidMount() {
+        console.log("done");
+
+        axios({
+            method: "GET",
+            url: "/api/books"
+        }).then(data => {
+            this.setState({
+                articles: data.data
+            });
+            console.log(this.state.articles);
+        });
 
     }
 
     render() {
-        return  (
+        return (
             <div>
-                this.state.articles.map( (article) => {
-                <div>
-                    hello
-                </div>
-            });
+
+                {this.state.articles.map(article => (
+                    <div key={article._id}>
+                        <Card
+                            title={article.title}
+                            authors={article.authors[1]}
+                            description={article.description}
+                            image={article.image}
+                            link={article.link}
+                        />
+                    </div>
+                ))}
             </div>
         );
     }
