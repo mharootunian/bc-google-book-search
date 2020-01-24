@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import Search from "./components/search/Search";
 import Saved from "./components/saved/Saved";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends Component {
     render() {
@@ -12,8 +13,13 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo"/>
                     <h2>Welcome to React</h2>
                 </div>
-                <Saved/>
                 <Search/>
+
+                <Router>
+                    <Switch>
+                        <Route exact path={"/saved"} component={Saved} />
+                    </Switch>
+                </Router>
             </div>
         );
     }
